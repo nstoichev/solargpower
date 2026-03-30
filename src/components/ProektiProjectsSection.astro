@@ -1,0 +1,224 @@
+---
+import ProjectsGrid from './ProjectsGrid.astro';
+import type { ProjectItem } from './ProjectsGrid.astro';
+
+const projects: ProjectItem[] = [
+	{
+		id: '1',
+		title: 'ФвЕЦ - 50 kW Варна',
+		description: 'Централа за собствени нужди - 50 kW - Ауто гуми Варна ЕООД- град Варна',
+		cover: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&q=85',
+			'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '2',
+		title: 'ФвЕЦ - 30 kW с. Ведрина',
+		description: 'Изградената фотоволтаична централа е с мощност 30 kW - с. Ведрина, област Добрич.',
+		cover: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1400&q=85',
+		],
+	},
+	{
+		id: '3',
+		title: 'ФвЕЦ - 30 kW с. Владимирово',
+		description: 'Изградената фотоволтаична централа е с мощност 30 kW -  с. Владимирово, област Добрич. е с мощност 30 kW.',
+		cover: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&q=85',
+		gallery: [
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&q=85',
+		],
+	},
+	{
+		id: '4',
+		title: 'ФвЕЦ - 30 kW с.Паскалево',
+		description: 'Изградената фотоволтаична централа е с мощност 30 kW намираща се в с. Паскалево, област Добрич.',
+		cover: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+			'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1400&q=85',
+		],
+	},
+	{
+		id: '5',
+		title: 'ФвЕЦ - 30 kW Добрич',
+		description: 'Изграждане на Фотоволтаична централа с мощност 30 kW, град Добрич, на Авто сервиз - Авто Оказион Колеви.',
+		cover: 'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1400&q=85',
+			'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&q=85',
+		],
+	},
+	{
+		id: '6',
+		title: 'ФвЕЦ - 30 kW с. Царевец',
+		description: 'Изградената фотоволтаична централа е с мощност 30 kW намираща се в с. Царевец, област Добрич.',
+		cover: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '7',
+		title: 'ФвЕЦ - 30 kW с. Опанец',
+		description: 'Изградената фотоволтаична централа е с мощност 30 kW - с. Опанец, Област Добрич.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '8',
+		title: 'ФвЕЦ - 30 kW с. Орлова Могила',
+		description: 'Изградената фотоволтаична централа е с мощност 30 kW - с. Орлова Могила, област Добрич.',
+		cover: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1400&q=85',
+			'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&q=85',
+		],
+	},
+	{
+		id: '9',
+		title: 'ФвЕЦ - 92 KW ДОБРИЧ',
+		description: 'Централа за собствени нужди - 92 kW - Верига магазини ЦБА град Добрич.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '10',
+		title: 'ФвЕЦ - 40 KW ДОБРИЧ',
+		description: 'Централа за собствени нужди - 40 kW - Борса Смарт Билдинг ООД -  град Добрич.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '11',
+		title: 'ФвЕЦ - 30 KW с.Миладиновци',
+		description: 'Изградената фотоволтаична централа е с мощност 30 kW - с. Миладиновци, област Добрич.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '12',
+		title: 'ФвЕЦ - 50 KW с.Ловчанци',
+		description: 'Изградената фотоволтаична централа е с мощност 50 kW - с. Лочванци, област Добрич.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '13',
+		title: 'ФвЕЦ - 30 KW гр. Добрич',
+		description: 'Фотоволтаична централа за собствени нужди - магазин АБЦ Маркет,  с продажба на излишъкът - 67 броя монокристални фотоволтаични панели LONGI 445 W, 30 KW Соларен инвертор HUAWEI, конструкция Aerocompact.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '14',
+		title: 'ФвЕЦ - 30 KW с. Плачидол',
+		description: 'Фотоволтаична централа за собствени нужди - магазин ДМ Груп с. Плачидол,  с продажба на излишъкът - 55 броя монокристални фотоволтаични панели DAH SOLAR 550W, 30 KW Соларен инвертор HUAWEI, конструкция набивна поцинкована.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '15',
+		title: 'ФвЕЦ - 10 KW гр. Добрич',
+		description: 'Фотоволтаична централа за собствени нужди - гр. Добрич - 18 броя монокристални фотоволтаични панели LONGI SOLAR 545W, 10 KW Соларен инвертор HUAWEI.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '16',
+		title: 'ФвЕЦ - 30 KW гр. Добрич',
+		description: 'Фотоволтаична централа за Продажба - гр. Добрич - 66 броя монокристални фотоволтаични панели LONGI SOLAR 450W, 30 KW Соларен инвертор HUAWEI.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '17',
+		title: 'ФвЕЦ - 120 KW с. Кълново',
+		description: 'Фотоволтаична централа за продажба -  с. Кълново, общ. Смядово, обл. Шумен  - 218 броя монокристални фотоволтаични панели DAH SOLAR 550W,  2 броя по 60 KW Соларни инвертори GOODWE, конструкция набивна поцинкована. ',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '18',
+		title: 'ФвЕЦ - 30 KW с. Лясково',
+		description: 'Фотоволтаична централа за продажба с. Лясково - 80 броя монокристални фотоволтаични панели BLUESUN SOLAR 375W, 30 KW Соларен инвертор Goodwe, конструкция набивна поцинкована.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '19',
+		title: 'ФвЕЦ - 190 KW гр. Добрич',
+		description: 'Фотоволтаична централа за собствени нужди - Бетонов възел Свети Никола,  с продажба на излишъкът - 422 броя монокристални фотоволтаични панели Longi SOLAR 450W, 1 брой 40 KW, 50 KW и 100 KW Соларни инвертори на HUAWEI, конструкция по проект - Алуминиева.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+	{
+		id: '20',
+		title: 'ФвЕЦ - 150 KW гр. Добрич',
+		description: 'Фотоволтаична централа за собствени нужди - Стив 98 ООД,  с продажба на излишъкът - 366 броя монокристални фотоволтаични панели ULICA SOLAR 410W, 1 брой 50 KW и 100 KW Соларни инвертори на HUAWEI, конструкция по проект - Алуминиева, Aerocompact.',
+		cover: 'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80',
+		gallery: [
+			'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=1400&q=85',
+			'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1400&q=85',
+			'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400&q=85',
+		],
+	},
+];
+---
+
+<ProjectsGrid projects={projects} />

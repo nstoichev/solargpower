@@ -1,0 +1,177 @@
+<section class="evroproekti-support" aria-labelledby="evroproekti-inquiry-title">
+	<div class="container">
+		<div class="evroproekti-support__inner">
+			<h2 id="evroproekti-inquiry-title" class="evroproekti-support__heading">Направи запитване</h2>
+
+			<div class="evroproekti-support__grid">
+				<div class="evroproekti-support__contacts">
+					<ul class="evroproekti-support__list">
+						<li>
+							<span class="evroproekti-support__label">Телефон:</span>
+							<a href="tel:0898690308">089 869 03 08</a>
+						</li>
+						<li>
+							<span class="evroproekti-support__label">Имейл:</span>
+							<a href="mailto:solargpower.eood@gmail.com">solargpower.eood@gmail.com</a>
+						</li>
+						<li>
+							<span class="evroproekti-support__label">Адрес:</span>
+							<span>ул. Никола Петков 9, 9300 Добрич</span>
+						</li>
+					</ul>
+				</div>
+
+				<form
+					class="evroproekti-support__form"
+					name="evroproekti-inquiry"
+					method="POST"
+					data-netlify="true"
+					netlify-honeypot="bot-field"
+				>
+					<input type="hidden" name="form-name" value="evroproekti-inquiry" />
+
+					<p class="evroproekti-support__honeypot" hidden>
+						<label>
+							Не попълвайте това поле:
+							<input name="bot-field" />
+						</label>
+					</p>
+
+					<label class="evroproekti-support__field">
+						<span>Вашето име</span>
+						<input type="text" name="name" autocomplete="name" required />
+					</label>
+
+					<label class="evroproekti-support__field">
+						<span>Email</span>
+						<input type="email" name="email" autocomplete="email" required />
+					</label>
+
+					<label class="evroproekti-support__field">
+						<span>Телефон за връзка</span>
+						<input type="tel" name="phone" autocomplete="tel" required />
+					</label>
+
+					<label class="evroproekti-support__field">
+						<span>Вашето запитване</span>
+						<textarea name="message" rows="6" required></textarea>
+					</label>
+
+					<button class="btn evroproekti-support__submit" type="submit">Изпрати запитване</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.evroproekti-support {
+		padding: 5rem 0 6rem;
+	}
+
+	.evroproekti-support__inner {
+		padding-top: 4rem;
+		border-top: 1px solid rgba(17, 17, 17, 0.1);
+	}
+
+	.evroproekti-support__heading {
+		font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+		margin-bottom: 2.4rem;
+		color: var(--coor-headings, var(--color-primary));
+		font-weight: 700;
+	}
+
+	.evroproekti-support__grid {
+		display: grid;
+		gap: 3rem;
+	}
+
+	@media (min-width: 900px) {
+		.evroproekti-support__grid {
+			grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+			align-items: start;
+		}
+	}
+
+	.evroproekti-support__contacts {
+		background: rgba(17, 17, 17, 0.03);
+		border: 1px solid rgba(17, 17, 17, 0.08);
+		border-radius: var(--border-radius);
+		padding: 2.4rem;
+	}
+
+	.evroproekti-support__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 1.6rem;
+		font-size: 1.8rem;
+		line-height: 1.55;
+	}
+
+	.evroproekti-support__label {
+		display: block;
+		font-weight: 700;
+		margin-bottom: 0.3rem;
+		color: var(--coor-headings, var(--color-primary));
+	}
+
+	.evroproekti-support__contacts a {
+		color: var(--color-dark);
+		text-decoration: none;
+	}
+
+	.evroproekti-support__contacts a:hover {
+		text-decoration: underline;
+	}
+
+	.evroproekti-support__form {
+		display: grid;
+		gap: 1.6rem;
+	}
+
+	.evroproekti-support__honeypot {
+		display: none;
+	}
+
+	.evroproekti-support__field {
+		display: grid;
+		gap: 0.6rem;
+		font-size: 1.6rem;
+		color: var(--color-dark);
+	}
+
+	.evroproekti-support__field span {
+		font-weight: 600;
+	}
+
+	.evroproekti-support__field input,
+	.evroproekti-support__field textarea {
+		width: 100%;
+		border: 1px solid rgba(17, 17, 17, 0.14);
+		border-radius: 1.2rem;
+		padding: 1.2rem 1.4rem;
+		font: inherit;
+		color: var(--color-dark);
+		background-color: #fff;
+	}
+
+	.evroproekti-support__field textarea {
+		resize: vertical;
+		min-height: 14rem;
+	}
+
+	.evroproekti-support__field input:focus,
+	.evroproekti-support__field textarea:focus {
+		outline: 2px solid rgba(255, 184, 38, 0.45);
+		outline-offset: 1px;
+		border-color: rgba(255, 184, 38, 0.75);
+	}
+
+	.evroproekti-support__submit {
+		justify-self: start;
+		font-size: 1.8rem;
+		padding: 1.2rem 2.4rem;
+	}
+</style>
