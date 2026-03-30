@@ -1,0 +1,327 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navigationItems = [
+	{ label: 'Начало', href: '/', isActive: currentPath === '/' },
+	{ label: 'За нас', href: '/#za-nas', isActive: false },
+	{ label: 'Проекти', href: '/proekti', isActive: currentPath === '/proekti' },
+	{ label: 'Евро проекти', href: '/evroproekti', isActive: currentPath === '/evroproekti' },
+	{ label: 'Контакти', href: '/#kontakti', isActive: false },
+];
+---
+
+<header class="site-header" data-site-header>
+	<div class="container site-header__inner">
+		<a class="site-header__brand" href="/" aria-label="Солар Джи Пауър - Начало">
+			<img class="site-header__logo" src="/favicon.svg" alt="Солар Джи Пауър" />
+			<span class="site-header__brand-text">Solar G Power</span>
+		</a>
+
+		<nav class="site-header__nav" aria-label="Основна навигация">
+			<ul class="site-header__nav-list">
+				{
+					navigationItems.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								class:list={['site-header__nav-link', { 'is-active': item.isActive }]}
+								aria-current={item.isActive ? 'page' : undefined}
+							>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<button
+			class="site-header__menu-button"
+			type="button"
+			aria-label="Отвори менюто"
+			aria-controls="mobile-navigation"
+			aria-expanded="false"
+			data-menu-button
+		>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+
+	<div class="site-header__overlay" hidden data-menu-overlay></div>
+
+	<nav
+		id="mobile-navigation"
+		class="site-header__drawer"
+		aria-label="Мобилна навигация"
+		hidden
+		data-mobile-drawer
+	>
+		<div class="site-header__drawer-head">
+			<a class="site-header__brand" href="/" aria-label="Солар Джи Пауър - Начало" data-nav-link>
+				<img class="site-header__logo" src="/favicon.svg" alt="Солар Джи Пауър" />
+				<span class="site-header__brand-text">Solar G Power</span>
+			</a>
+
+			<button class="site-header__close-button" type="button" aria-label="Затвори менюто" data-close-menu>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+
+		<ul class="site-header__drawer-list">
+			{
+				navigationItems.map((item) => (
+					<li>
+						<a
+							href={item.href}
+							class:list={['site-header__drawer-link', { 'is-active': item.isActive }]}
+							aria-current={item.isActive ? 'page' : undefined}
+							data-nav-link
+						>
+							{item.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</header>
+
+<script>
+	const menuButton = document.querySelector('[data-menu-button]');
+	const closeButton = document.querySelector('[data-close-menu]');
+	const overlay = document.querySelector('[data-menu-overlay]');
+	const drawer = document.querySelector('[data-mobile-drawer]');
+	const navLinks = document.querySelectorAll('[data-nav-link]');
+
+	const setMenuState = (isOpen: boolean) => {
+		if (!(menuButton instanceof HTMLButtonElement)) return;
+		if (!(overlay instanceof HTMLDivElement)) return;
+		if (!(drawer instanceof HTMLElement)) return;
+
+		menuButton.setAttribute('aria-expanded', String(isOpen));
+		menuButton.setAttribute('aria-label', isOpen ? 'Затвори менюто' : 'Отвори менюто');
+		overlay.hidden = !isOpen;
+		drawer.hidden = !isOpen;
+		drawer.classList.toggle('is-open', isOpen);
+		document.body.classList.toggle('menu-open', isOpen);
+	};
+
+	const toggleMenu = () => {
+		if (!(drawer instanceof HTMLElement)) return;
+		setMenuState(!drawer.classList.contains('is-open'));
+	};
+
+	menuButton?.addEventListener('click', toggleMenu);
+	closeButton?.addEventListener('click', () => setMenuState(false));
+	overlay?.addEventListener('click', () => setMenuState(false));
+
+	navLinks.forEach((link) => {
+		link.addEventListener('click', () => setMenuState(false));
+	});
+
+	window.addEventListener('resize', () => {
+		if (window.innerWidth > 900) {
+			setMenuState(false);
+		}
+	});
+</script>
+
+<style>
+	:global(body.menu-open) {
+		overflow: hidden;
+	}
+
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 1000;
+		background: rgba(255, 255, 255, 0.94);
+		backdrop-filter: blur(14px);
+		border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2.4rem;
+		min-height: 8rem;
+	}
+
+	.site-header__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 1.2rem;
+		flex-shrink: 0;
+	}
+
+	.site-header__logo {
+		width: 4.4rem;
+		height: 4.4rem;
+		object-fit: contain;
+	}
+
+	.site-header__brand-text {
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+	}
+
+	.site-header__nav {
+		margin-left: auto;
+	}
+
+	.site-header__nav-list {
+		display: flex;
+		align-items: center;
+		gap: 1.2rem;
+	}
+
+	.site-header__nav-link,
+	.site-header__drawer-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.6rem;
+		font-weight: 600;
+		padding: 1rem 1.4rem;
+		border-radius: 999px;
+		transition:
+			background-color 0.25s ease,
+			color 0.25s ease;
+	}
+
+	.site-header__nav-link:hover,
+	.site-header__drawer-link:hover,
+	.site-header__nav-link:focus-visible,
+	.site-header__drawer-link:focus-visible {
+		background-color: rgba(45, 194, 107, 0.12);
+		color: var(--color-primary);
+		outline: none;
+	}
+
+	.site-header__nav-link.is-active,
+	.site-header__drawer-link.is-active {
+		background-color: var(--color-primary);
+		color: var(--color-light);
+	}
+
+	.site-header__menu-button,
+	.site-header__close-button {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 4.8rem;
+		height: 4.8rem;
+		border-radius: 50%;
+		border: 1px solid rgba(17, 17, 17, 0.12);
+		background-color: var(--color-light);
+	}
+
+	.site-header__menu-button span,
+	.site-header__close-button span {
+		position: absolute;
+		display: block;
+		width: 2rem;
+		height: 0.2rem;
+		background-color: var(--color-dark);
+		border-radius: 999px;
+		transition: transform 0.25s ease;
+	}
+
+	.site-header__menu-button {
+		position: relative;
+	}
+
+	.site-header__menu-button span:nth-child(1) {
+		transform: translateY(-0.6rem);
+	}
+
+	.site-header__menu-button span:nth-child(3) {
+		transform: translateY(0.6rem);
+	}
+
+	.site-header__close-button {
+		position: relative;
+	}
+
+	.site-header__close-button span:nth-child(1) {
+		transform: rotate(45deg);
+	}
+
+	.site-header__close-button span:nth-child(2) {
+		transform: rotate(-45deg);
+	}
+
+	.site-header__overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(17, 17, 17, 0.45);
+	}
+
+	.site-header__drawer {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: min(32rem, 100%);
+		height: 100vh;
+		padding: 2.4rem;
+		background: var(--color-light);
+		box-shadow: -12px 0 40px rgba(17, 17, 17, 0.18);
+		transform: translateX(100%);
+		transition: transform 0.3s ease;
+	}
+
+	.site-header__drawer.is-open {
+		transform: translateX(0);
+	}
+
+	.site-header__drawer-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.6rem;
+		margin-bottom: 3.2rem;
+	}
+
+	.site-header__drawer-list {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.site-header__drawer-link {
+		width: 100%;
+		justify-content: flex-start;
+		font-size: 1.8rem;
+		padding: 1.2rem 1.4rem;
+		border-radius: 1.4rem;
+	}
+
+	@media (max-width: 900px) {
+		.site-header__inner {
+			min-height: 7.2rem;
+		}
+
+		.site-header__nav {
+			display: none;
+		}
+
+		.site-header__menu-button,
+		.site-header__close-button {
+			display: inline-flex;
+		}
+
+		.site-header__brand-text {
+			font-size: 1.6rem;
+		}
+
+		.site-header__logo {
+			width: 4rem;
+			height: 4rem;
+		}
+	}
+</style>
