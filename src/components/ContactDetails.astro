@@ -1,0 +1,51 @@
+<div class="contact-details">
+	<ul class="contact-details__list">
+		<li>
+			<span class="contact-details__label">Телефон:</span>
+			<a href="tel:0898690308">089 869 03 08</a>
+		</li>
+		<li>
+			<span class="contact-details__label">Имейл:</span>
+			<a href="mailto:solargpower.eood@gmail.com">solargpower.eood@gmail.com</a>
+		</li>
+		<li>
+			<span class="contact-details__label">Адрес:</span>
+			<span>ул. Никола Петков 9, 9300 Добрич</span>
+		</li>
+	</ul>
+</div>
+
+<style>
+	.contact-details {
+		background: rgba(17, 17, 17, 0.03);
+		border: 1px solid rgba(17, 17, 17, 0.08);
+		border-radius: var(--border-radius);
+		padding: 2.4rem;
+	}
+
+	.contact-details__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 1.6rem;
+		font-size: 1.8rem;
+		line-height: 1.55;
+	}
+
+	.contact-details__label {
+		display: block;
+		font-weight: 700;
+		margin-bottom: 0.3rem;
+		color: var(--coor-headings, var(--color-primary));
+	}
+
+	.contact-details a {
+		color: var(--color-dark);
+		text-decoration: none;
+	}
+
+	.contact-details a:hover {
+		text-decoration: underline;
+	}
+</style>

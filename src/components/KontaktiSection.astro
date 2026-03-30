@@ -1,0 +1,202 @@
+---
+import ContactDetails from './ContactDetails.astro';
+---
+
+<section class="kontakti-section" aria-labelledby="kontakti-title">
+	<div class="container">
+		<div class="kontakti-section__inner">
+			<h1 id="kontakti-title" class="kontakti-section__heading">Свържете се с нас</h1>
+
+			<div class="kontakti-section__top-grid">
+				<div>
+					<h2 class="kontakti-section__panel-title">Направете заявка</h2>
+
+					<form
+						class="kontakti-section__form"
+						name="kontakti-inquiry"
+						method="POST"
+						data-netlify="true"
+						netlify-honeypot="bot-field"
+					>
+						<input type="hidden" name="form-name" value="kontakti-inquiry" />
+
+						<p class="kontakti-section__honeypot" hidden>
+							<label>
+								Не попълвайте това поле:
+								<input name="bot-field" />
+							</label>
+						</p>
+
+						<label class="kontakti-section__field">
+							<span>Вашето име*</span>
+							<input
+								type="text"
+								name="name"
+								autocomplete="name"
+								placeholder="Въведете Вашето име"
+								required
+							/>
+						</label>
+
+						<label class="kontakti-section__field">
+							<span>Имейл</span>
+							<input
+								type="email"
+								name="email"
+								autocomplete="email"
+								placeholder="Въведете Вашия имейл"
+							/>
+						</label>
+
+						<label class="kontakti-section__field">
+							<span>Вашето съобщение</span>
+							<textarea
+								name="message"
+								rows="6"
+								placeholder="Напишете Вашето съобщение"
+							></textarea>
+						</label>
+
+						<button class="btn kontakti-section__submit" type="submit">Изпрати</button>
+					</form>
+				</div>
+
+				<div>
+					<h2 class="kontakti-section__panel-title">Контакти</h2>
+					<ContactDetails />
+				</div>
+			</div>
+
+			<div class="kontakti-section__map-section">
+				<h2 class="kontakti-section__panel-title">Посетете ни</h2>
+
+				<div class="kontakti-section__map-wrap">
+					<iframe
+						class="kontakti-section__map"
+						title="Карта до офиса на Солар Джи Пауър"
+						src="https://www.google.com/maps?q=%D1%83%D0%BB.+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0+%D0%9F%D0%B5%D1%82%D0%BA%D0%BE%D0%B2+9,+9300+%D0%94%D0%BE%D0%B1%D1%80%D0%B8%D1%87&z=16&output=embed"
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+						allowfullscreen
+					></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.kontakti-section {
+		padding: 5rem 0 6rem;
+	}
+
+	.kontakti-section__inner {
+		padding-top: 4rem;
+		border-top: 1px solid rgba(17, 17, 17, 0.1);
+	}
+
+	.kontakti-section__heading {
+		margin-bottom: 2.4rem;
+		color: var(--coor-headings, var(--color-primary));
+		text-align: center;
+	}
+
+	.kontakti-section__top-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 3rem;
+		align-items: start;
+		margin-bottom: 3rem;
+	}
+
+	@media (max-width: 900px) {
+		.kontakti-section__top-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.kontakti-section__panel-title {
+		font-size: clamp(2.2rem, 3vw, 2.8rem);
+		margin-bottom: 1.8rem;
+		color: var(--coor-headings, var(--color-primary));
+	}
+
+	.kontakti-section__map-section {
+		display: grid;
+		gap: 1.8rem;
+	}
+
+	.kontakti-section__form {
+		display: grid;
+		gap: 1.6rem;
+	}
+
+	.kontakti-section__honeypot {
+		display: none;
+	}
+
+	.kontakti-section__field {
+		display: grid;
+		gap: 0.6rem;
+		font-size: 1.6rem;
+		color: var(--color-dark);
+	}
+
+	.kontakti-section__field span {
+		font-weight: 600;
+	}
+
+	.kontakti-section__field input,
+	.kontakti-section__field textarea {
+		width: 100%;
+		border: 1px solid rgba(17, 17, 17, 0.14);
+		border-radius: 1.2rem;
+		padding: 1.2rem 1.4rem;
+		font: inherit;
+		color: var(--color-dark);
+		background-color: #fff;
+	}
+
+	.kontakti-section__field input::placeholder,
+	.kontakti-section__field textarea::placeholder {
+		color: rgba(17, 17, 17, 0.5);
+	}
+
+	.kontakti-section__field textarea {
+		resize: vertical;
+		min-height: 14rem;
+	}
+
+	.kontakti-section__field input:focus,
+	.kontakti-section__field textarea:focus {
+		outline: 2px solid rgba(255, 184, 38, 0.45);
+		outline-offset: 1px;
+		border-color: rgba(255, 184, 38, 0.75);
+	}
+
+	.kontakti-section__submit {
+		justify-self: start;
+		font-size: 1.8rem;
+		padding: 1.2rem 2.4rem;
+	}
+
+	.kontakti-section__map-wrap {
+		overflow: hidden;
+		border-radius: var(--border-radius);
+		padding: 2rem;
+		background: rgba(17, 17, 17, 0.03);
+	}
+
+	.kontakti-section__map {
+		display: block;
+		width: 100%;
+		min-height: 42rem;
+		border: 0;
+	}
+
+	@media (max-width: 599px) {
+		.kontakti-section__map {
+			min-height: 32rem;
+		}
+	}
+</style>

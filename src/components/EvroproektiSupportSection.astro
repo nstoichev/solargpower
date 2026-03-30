@@ -1,25 +1,14 @@
+---
+import ContactDetails from './ContactDetails.astro';
+---
+
 <section class="evroproekti-support" aria-labelledby="evroproekti-inquiry-title">
 	<div class="container">
 		<div class="evroproekti-support__inner">
 			<h2 id="evroproekti-inquiry-title" class="evroproekti-support__heading">Направи запитване</h2>
 
 			<div class="evroproekti-support__grid">
-				<div class="evroproekti-support__contacts">
-					<ul class="evroproekti-support__list">
-						<li>
-							<span class="evroproekti-support__label">Телефон:</span>
-							<a href="tel:0898690308">089 869 03 08</a>
-						</li>
-						<li>
-							<span class="evroproekti-support__label">Имейл:</span>
-							<a href="mailto:solargpower.eood@gmail.com">solargpower.eood@gmail.com</a>
-						</li>
-						<li>
-							<span class="evroproekti-support__label">Адрес:</span>
-							<span>ул. Никола Петков 9, 9300 Добрич</span>
-						</li>
-					</ul>
-				</div>
+				<ContactDetails />
 
 				<form
 					class="evroproekti-support__form"
@@ -91,39 +80,6 @@
 			grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
 			align-items: start;
 		}
-	}
-
-	.evroproekti-support__contacts {
-		background: rgba(17, 17, 17, 0.03);
-		border: 1px solid rgba(17, 17, 17, 0.08);
-		border-radius: var(--border-radius);
-		padding: 2.4rem;
-	}
-
-	.evroproekti-support__list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: grid;
-		gap: 1.6rem;
-		font-size: 1.8rem;
-		line-height: 1.55;
-	}
-
-	.evroproekti-support__label {
-		display: block;
-		font-weight: 700;
-		margin-bottom: 0.3rem;
-		color: var(--coor-headings, var(--color-primary));
-	}
-
-	.evroproekti-support__contacts a {
-		color: var(--color-dark);
-		text-decoration: none;
-	}
-
-	.evroproekti-support__contacts a:hover {
-		text-decoration: underline;
 	}
 
 	.evroproekti-support__form {
