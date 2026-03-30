@@ -162,6 +162,7 @@ table {
   --color-primary: #2dc26b;
   --color-dark: #111;
   --color-light: #fff;
+  --border-radius: 8px;
 }
 
 .container {
@@ -179,6 +180,7 @@ table {
   font-size: 2rem;
   font-weight: 500;
   transition: background-color 0.3s ease;
+  border-radius: var(--border-radius);
 }
 
 
@@ -189,7 +191,8 @@ table {
 }
 
 .btn--outline:hover {
-  background-color: var(--color-dark);
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
   color: var(--color-light);
 }
 
