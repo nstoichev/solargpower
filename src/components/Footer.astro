@@ -1,0 +1,52 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="container site-footer__inner">
+		<p class="site-footer__copy">© {year} Солар Джи Пауър ЕООД</p>
+		<div class="site-footer__links" aria-label="Контакти">
+			<a href="tel:0898690308">089 869 03 08</a>
+			<a href="mailto:solargpower.eood@gmail.com">solargpower.eood@gmail.com</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		margin-top: 4rem;
+		padding: 2.4rem 0;
+		background: #111;
+		color: #fff;
+	}
+
+	.site-footer__inner {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+		text-align: center;
+	}
+
+	.site-footer__copy {
+		margin: 0;
+		font-size: 1.5rem;
+	}
+
+	.site-footer__links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1.2rem 2rem;
+		font-size: 1.5rem;
+	}
+
+	.site-footer__links a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.site-footer__links a:hover {
+		text-decoration: underline;
+	}
+</style>
