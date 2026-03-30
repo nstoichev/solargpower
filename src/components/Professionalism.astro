@@ -1,0 +1,158 @@
+---
+export interface Props {
+  /** Background image URLs (add or reorder anytime) */
+  images?: string[];
+  /** Autoplay interval in milliseconds */
+  autoplayDelay?: number;
+  /** Slide transition duration in milliseconds */
+  transitionMs?: number;
+}
+
+const {
+  images = ['/images/slider-1.jpg', '/images/slider-2.jpg'],
+  autoplayDelay = 3000,
+  transitionMs = 1500,
+} = Astro.props;
+
+const slides = images.filter(Boolean);
+---
+
+<section class="professionalism" aria-label="Коректност и професионализъм">
+  <div class="professionalism__slides-wrap" aria-hidden="true">
+    <div
+      class="swiper professionalism__swiper"
+      data-autoplay-delay={autoplayDelay}
+      data-transition-ms={transitionMs}
+    >
+      <div class="swiper-wrapper">
+        {
+          slides.map((src) => (
+            <div class="swiper-slide">
+              <div
+                class="professionalism__slide-bg"
+                style={`background-image: url(${JSON.stringify(src)})`}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="professionalism__overlay" aria-hidden="true" />
+  <div class="container professionalism__inner">
+    <header class="professionalism__header">
+      <h2 class="professionalism__title">Коректност и професионализъм</h2>
+      <p class="professionalism__subtitle">С модерен поглед в Бъдещето!</p>
+    </header>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay, EffectFade } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/effect-fade';
+
+  function initProfessionalismSwiper() {
+    const el = document.querySelector<HTMLElement>('.professionalism__swiper');
+    if (!el || el.querySelectorAll('.swiper-slide').length === 0) return;
+
+    const delay = Number(el.dataset.autoplayDelay) || 3000;
+    const speed = Number(el.dataset.transitionMs) || 800;
+
+    const slideCount = el.querySelectorAll('.swiper-slide').length;
+    const existing = (el as HTMLElement & { swiper?: Swiper }).swiper;
+    existing?.destroy(true, true);
+
+    new Swiper(el, {
+      modules: [Autoplay, EffectFade],
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      speed,
+      loop: slideCount > 1,
+      autoplay:
+        slideCount > 1
+          ? { delay, disableOnInteraction: false }
+          : false,
+      allowTouchMove: slideCount > 1,
+    });
+  }
+
+  initProfessionalismSwiper();
+  document.addEventListener('astro:page-load', initProfessionalismSwiper);
+</script>
+
+<style>
+  .professionalism {
+    position: relative;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .professionalism__slides-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .professionalism__swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .professionalism__swiper :global(.swiper-wrapper),
+  .professionalism__swiper :global(.swiper-slide) {
+    height: 100%;
+  }
+
+  .professionalism__swiper :global(.swiper-slide) {
+    margin: 0;
+  }
+
+  .professionalism__slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .professionalism__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+  }
+
+  .professionalism__inner {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 20px;
+  }
+
+  .professionalism__header {
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  .professionalism__title {
+    margin-bottom: 1.2rem;
+    color: var(--coor-headings);
+    font-size: clamp(3.2rem, 5vw, 5rem);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .professionalism__subtitle {
+    margin: 0;
+    font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+    font-weight: 500;
+    color: var(--color-light);
+    line-height: 1.35;
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
+  }
+</style>

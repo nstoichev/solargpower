@@ -1,0 +1,78 @@
+---
+import Cards from '../components/Cards.astro';
+const cards = [
+  {
+    image: '/images/card1.jpg',
+    title: 'Фотоволтаични централи',
+    richtext:
+      '<p>Фирма Солар Джи Пауър ЕООД проектира и изгражда слънчеви централи от всякакъв размер и тип. Вниманието към детайлите, голям опит и оборудване от висок клас ни позволяват да гарантираме ефективността на нашите фотоволтаични системи в продължение на годините работа и броя на доволните клиенти.</p><p>Слънчевите централи могат да се различават по тип (мрежови, автономни или хибридни), разположението на модулите (на фасадата, покрива или на земята) и предназначението (за дом, офис, фабрика, хотел, кемпер или яхта).</p>',
+    buttonText: 'Проекти',
+    buttonUrl: '/service-1'
+  },
+  {
+    image: '/images/card2.jpg',
+    title: 'Доставка от производители',
+    richtext: '<ul><li>Фирмата извършва доставка на панели директно от производителя. Панелите са с марка LONGI SOLAR и DAH SOLAR и имат 25 години производствена гаранция.  Използваните инвертори са с марка DAYE и HUAWEI и се предлагат в различни инсталационни мощности.</li><li>Фирма Солар Джи Пауър ЕООД предлага 5 години пълна гаранция на Соларните системи</li></ul>',
+    buttonText: 'Проекти',
+    buttonUrl: '/service-2'
+  },
+  {
+    image: '/images/card3.jpg',
+    title: 'Какво ви предлагаме',
+    richtext: `<p>Солар Джи Пауър ЕООД определя оптималната конфигурация на фотоволтаичната система за постигане целите на всеки клиент.</p>
+    <ol>
+      <li>Оценка, анализ и оптимизиране на обекта</li>
+      <li>Бизнес планиране и финансови консултации</li>
+      <li>Проектиране</li>
+      <li>Съдействие с документи</li>
+      <li>Доставка на всички необходими материали</li>
+      <li>Монтаж на системата</li>
+      <li>Сервиз и обслужване</li>
+    </ol>`,
+    buttonText: 'Проекти',
+    buttonUrl: '/service-3'
+  }
+];
+---
+
+<section class="features">
+  <div class="container">
+    <header class="features__header">
+      <h2>Нашите идеи</h2>
+    </header>
+
+    <div class="features__content">
+      {cards.map(card => (
+        <Cards {...card} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    position: relative;
+    padding: 40px 0;
+  }
+
+  .features__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .features__content {
+    font-size: 1.8rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .features__actions {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .features__header h2 {
+    color: var(--coor-headings);
+  }
+</style>

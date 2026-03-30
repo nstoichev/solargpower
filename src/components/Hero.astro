@@ -1,0 +1,45 @@
+<section class="hero">
+  <div class="hero__content">
+    <h1>Добре дошли в Бъдещето!</h1>
+
+    <h4>СОЛАР ДЖИ ПАУЪР ЕООД</h4>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero h1 {
+    margin-bottom: 20px;
+    color: var(--coor-headings);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .hero__content {
+    position: relative;
+    color: white;
+    z-index: 1;
+  }  
+
+  @media (min-width: 750px) {
+    .hero h1 {
+      font-size: 9rem;
+    }
+  }
+</style>

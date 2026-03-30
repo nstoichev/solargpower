@@ -1,5 +1,8 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Hero from '../components/Hero.astro';
+import Info from '../components/Info.astro';
+import Professionalism from '../components/Professionalism.astro';
+import Features from '../components/Features.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -8,7 +11,9 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="My Site">
   <main>
-    <h1>Здрасти 👋</h1>
-    <p>Това е моят първи Astro сайт</p>
+    <Hero />
+    <Info />
+    <Features />
+    <Professionalism />
   </main>
 </Layout>
