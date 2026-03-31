@@ -1,5 +1,18 @@
 ---
-const { projects, heading = 'Проекти' } = Astro.props;
+export interface ProjectItem {
+	id: string;
+	title: string;
+	description: string;
+	cover: string;
+	gallery: string[];
+}
+
+interface Props {
+	projects: ProjectItem[];
+	heading?: string;
+}
+
+const { projects, heading = 'Проекти' } = Astro.props as Props;
 ---
 
 <section class="projects-section" aria-labelledby="projects-heading">
@@ -7,7 +20,7 @@ const { projects, heading = 'Проекти' } = Astro.props;
 		<h2 id="projects-heading" class="projects-section__title">{heading}</h2>
 		<div class="projects-grid" role="list">
 			{
-				projects.map((project, index) => (
+				projects.map((project: ProjectItem, index: number) => (
 					<button
 						type="button"
 						class="project-card"
@@ -352,14 +365,23 @@ const { projects, heading = 'Проекти' } = Astro.props;
 	import 'swiper/css/pagination';
 	import 'swiper/css/effect-fade';
 
-	const projects = globalThis.__SOLARG_PROJECTS_GRID__;
+	type ProjectItem = {
+		id: string;
+		title: string;
+		description: string;
+		cover: string;
+		gallery: string[];
+	};
+
+	const projects = (globalThis as typeof globalThis & { __SOLARG_PROJECTS_GRID__?: ProjectItem[] })
+		.__SOLARG_PROJECTS_GRID__;
 	if (!Array.isArray(projects)) {
 		throw new Error('ProjectsGrid: missing __SOLARG_PROJECTS_GRID__');
 	}
 
-	const projectById = Object.fromEntries(projects.map((p) => [p.id, p]));
+	const projectById: Record<string, ProjectItem> = Object.fromEntries(projects.map((p) => [p.id, p]));
 
-	let cardsRevealObserver = null;
+	let cardsRevealObserver: IntersectionObserver | null = null;
 
 	function initProjectCardsReveal() {
 		const section = document.querySelector('.projects-section');
@@ -398,14 +420,14 @@ const { projects, heading = 'Проекти' } = Astro.props;
 	initProjectCardsReveal();
 	document.addEventListener('astro:page-load', initProjectCardsReveal);
 
-	const dialog = document.getElementById('project-modal');
-	const titleEl = document.getElementById('project-modal-title');
-	const descriptionEl = document.getElementById('project-modal-description');
-	const swiperEl = document.getElementById('project-gallery-swiper');
-	const wrapper = swiperEl?.querySelector('.swiper-wrapper');
-	const closeBtn = dialog?.querySelector('.project-modal__close');
+	const dialog = document.getElementById('project-modal') as HTMLDialogElement | null;
+	const titleEl = document.getElementById('project-modal-title') as HTMLHeadingElement | null;
+	const descriptionEl = document.getElementById('project-modal-description') as HTMLParagraphElement | null;
+	const swiperEl = document.getElementById('project-gallery-swiper') as HTMLElement | null;
+	const wrapper = swiperEl?.querySelector<HTMLDivElement>('.swiper-wrapper') ?? null;
+	const closeBtn = dialog?.querySelector<HTMLButtonElement>('.project-modal__close') ?? null;
 
-	let swiperInstance = null;
+	let swiperInstance: Swiper | null = null;
 
 	function destroySwiper() {
 		if (swiperInstance) {
@@ -414,7 +436,7 @@ const { projects, heading = 'Проекти' } = Astro.props;
 		}
 	}
 
-	function openModal(project) {
+	function openModal(project: ProjectItem) {
 		if (!dialog || !titleEl || !descriptionEl || !wrapper || !swiperEl) return;
 
 		destroySwiper();
@@ -428,7 +450,7 @@ const { projects, heading = 'Проекти' } = Astro.props;
 		}
 		wrapper.innerHTML = project.gallery
 			.map(
-				(src) =>
+				(src: string) =>
 					`<div class="swiper-slide"><img src="${src.replace(/"/g, '&quot;')}" alt="" loading="eager" decoding="async" /></div>`
 			)
 			.join('');
@@ -463,7 +485,7 @@ const { projects, heading = 'Проекти' } = Astro.props;
 				afterInit(swiper) {
 					const speed = swiper.params.speed ?? 300;
 					const bump = () => swiper.updateAutoHeight(speed);
-					swiper.el.querySelectorAll('.swiper-slide img').forEach((img) => {
+					swiper.el.querySelectorAll<HTMLImageElement>('.swiper-slide img').forEach((img) => {
 						if (img.complete) {
 							requestAnimationFrame(bump);
 						} else {
@@ -486,7 +508,7 @@ const { projects, heading = 'Проекти' } = Astro.props;
 		});
 	}
 
-	document.querySelectorAll('.project-card[data-project-id]').forEach((btn) => {
+	document.querySelectorAll<HTMLButtonElement>('.project-card[data-project-id]').forEach((btn) => {
 		btn.addEventListener('click', () => {
 			const id = btn.getAttribute('data-project-id');
 			const project = id ? projectById[id] : null;

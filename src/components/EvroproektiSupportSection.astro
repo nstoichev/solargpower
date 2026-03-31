@@ -5,8 +5,6 @@ import ContactDetails from './ContactDetails.astro';
 <section class="evroproekti-support" aria-labelledby="evroproekti-inquiry-title">
 	<div class="container">
 		<div class="evroproekti-support__inner">
-			<h2 id="evroproekti-inquiry-title" class="evroproekti-support__heading">Направи запитване</h2>
-
 			<div class="evroproekti-support__grid">
 				<ContactDetails />
 
@@ -17,6 +15,8 @@ import ContactDetails from './ContactDetails.astro';
 					data-netlify="true"
 					netlify-honeypot="bot-field"
 				>
+					<h2 id="evroproekti-inquiry-title" class="evroproekti-support__heading">Направи запитване</h2>
+					
 					<input type="hidden" name="form-name" value="evroproekti-inquiry" />
 
 					<p class="evroproekti-support__honeypot" hidden>
