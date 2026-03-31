@@ -1,13 +1,4 @@
 ---
-import type { ProjectItem } from '../types/project';
-
-export type { ProjectItem };
-
-interface Props {
-	projects: ProjectItem[];
-	heading?: string;
-}
-
 const { projects, heading = 'Проекти' } = Astro.props;
 ---
 

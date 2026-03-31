@@ -10,10 +10,19 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Фотоволтаични централи Добрич / Фирма СОЛАР ДЖИ ПАУЪР ЕООД изгражда фотоволтаични централи">
-  <main>
+  <main class="home-main">
     <Hero />
     <Info />
     <Features />
     <Professionalism />
   </main>
 </Layout>
+
+<style>
+  /* Cover fixed hero video when scrolling (opaque layer above z-index 0 video) */
+  .home-main :global(> *:not(:first-child)) {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+  }
+</style>

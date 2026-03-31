@@ -157,6 +157,7 @@ table {
 ========================= */
 
 :root {
+  --site-header-offset: calc(7.2rem + 1px);
   --container-width: 1200px;
   --coor-headings: #2dc26b;
   --color-primary: #2dc26b;

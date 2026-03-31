@@ -43,55 +43,42 @@ const navigationItems = [
 			aria-expanded="false"
 			data-menu-button
 		>
-			<span></span>
-			<span></span>
-			<span></span>
+			<span class="site-header__menu-button-bar"></span>
+			<span class="site-header__menu-button-bar"></span>
+			<span class="site-header__menu-button-bar"></span>
 		</button>
 	</div>
-
-	<div class="site-header__overlay" hidden data-menu-overlay></div>
-
-	<nav
-		id="mobile-navigation"
-		class="site-header__drawer"
-		aria-label="Мобилна навигация"
-		hidden
-		data-mobile-drawer
-	>
-		<div class="site-header__drawer-head">
-			<a class="site-header__brand" href="/" aria-label="Солар Джи Пауър - Начало" data-nav-link>
-				<img class="site-header__logo" src="/favicon.svg" alt="Солар Джи Пауър" />
-				<span class="site-header__brand-text">Solar G Power</span>
-			</a>
-
-			<button class="site-header__close-button" type="button" aria-label="Затвори менюто" data-close-menu>
-				<span></span>
-				<span></span>
-			</button>
-		</div>
-
-		<ul class="site-header__drawer-list">
-			{
-				navigationItems.map((item) => (
-					<li>
-						<a
-							href={item.href}
-							class:list={['site-header__drawer-link', { 'is-active': item.isActive }]}
-							aria-current={item.isActive ? 'page' : undefined}
-							data-nav-link
-						>
-							{item.label}
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
 </header>
+
+<div class="site-header__overlay" data-menu-overlay aria-hidden="true"></div>
+
+<nav
+	id="mobile-navigation"
+	class="site-header__drawer"
+	aria-label="Мобилна навигация"
+	aria-hidden="true"
+	data-mobile-drawer
+>
+	<ul class="site-header__drawer-list">
+		{
+			navigationItems.map((item, index) => (
+				<li style={{ '--drawer-item-index': index }}>
+					<a
+						href={item.href}
+						class:list={['site-header__drawer-link', { 'is-active': item.isActive }]}
+						aria-current={item.isActive ? 'page' : undefined}
+						data-nav-link
+					>
+						{item.label}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
 
 <script>
 	const menuButton = document.querySelector('[data-menu-button]');
-	const closeButton = document.querySelector('[data-close-menu]');
 	const overlay = document.querySelector('[data-menu-overlay]');
 	const drawer = document.querySelector('[data-mobile-drawer]');
 	const navLinks = document.querySelectorAll('[data-nav-link]');
@@ -103,9 +90,11 @@ const navigationItems = [
 
 		menuButton.setAttribute('aria-expanded', String(isOpen));
 		menuButton.setAttribute('aria-label', isOpen ? 'Затвори менюто' : 'Отвори менюто');
-		overlay.hidden = !isOpen;
-		drawer.hidden = !isOpen;
+		menuButton.classList.toggle('is-open', isOpen);
+		overlay.classList.toggle('is-open', isOpen);
+		overlay.setAttribute('aria-hidden', String(!isOpen));
 		drawer.classList.toggle('is-open', isOpen);
+		drawer.setAttribute('aria-hidden', String(!isOpen));
 		document.body.classList.toggle('menu-open', isOpen);
 	};
 
@@ -115,7 +104,6 @@ const navigationItems = [
 	};
 
 	menuButton?.addEventListener('click', toggleMenu);
-	closeButton?.addEventListener('click', () => setMenuState(false));
 	overlay?.addEventListener('click', () => setMenuState(false));
 
 	navLinks.forEach((link) => {
@@ -137,7 +125,7 @@ const navigationItems = [
 	.site-header {
 		position: sticky;
 		top: 0;
-		z-index: 1000;
+		z-index: 1002;
 		background: rgba(255, 255, 255, 0.94);
 		backdrop-filter: blur(14px);
 		border-bottom: 1px solid rgba(17, 17, 17, 0.08);
@@ -210,9 +198,9 @@ const navigationItems = [
 		color: var(--color-light);
 	}
 
-	.site-header__menu-button,
-	.site-header__close-button {
+	.site-header__menu-button {
 		display: none;
+		position: relative;
 		align-items: center;
 		justify-content: center;
 		width: 4.8rem;
@@ -222,75 +210,114 @@ const navigationItems = [
 		background-color: var(--color-light);
 	}
 
-	.site-header__menu-button span,
-	.site-header__close-button span {
+	.site-header__menu-button-bar {
 		position: absolute;
-		display: block;
+		left: 50%;
 		width: 2rem;
 		height: 0.2rem;
+		margin-left: -1rem;
 		background-color: var(--color-dark);
 		border-radius: 999px;
-		transition: transform 0.25s ease;
+		transition:
+			transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 0.25s ease;
 	}
 
-	.site-header__menu-button {
-		position: relative;
+	.site-header__menu-button-bar:nth-child(1) {
+		transform: translateY(-0.55rem);
 	}
 
-	.site-header__menu-button span:nth-child(1) {
-		transform: translateY(-0.6rem);
+	.site-header__menu-button-bar:nth-child(2) {
+		transform: translateY(0);
+		opacity: 1;
 	}
 
-	.site-header__menu-button span:nth-child(3) {
-		transform: translateY(0.6rem);
+	.site-header__menu-button-bar:nth-child(3) {
+		transform: translateY(0.55rem);
 	}
 
-	.site-header__close-button {
-		position: relative;
+	.site-header__menu-button.is-open .site-header__menu-button-bar:nth-child(1) {
+		transform: translateY(0) rotate(45deg);
 	}
 
-	.site-header__close-button span:nth-child(1) {
-		transform: rotate(45deg);
+	.site-header__menu-button.is-open .site-header__menu-button-bar:nth-child(2) {
+		opacity: 0;
+		transform: translateY(0) scaleX(0);
 	}
 
-	.site-header__close-button span:nth-child(2) {
-		transform: rotate(-45deg);
+	.site-header__menu-button.is-open .site-header__menu-button-bar:nth-child(3) {
+		transform: translateY(0) rotate(-45deg);
 	}
 
 	.site-header__overlay {
 		position: fixed;
 		inset: 0;
-		background: rgba(17, 17, 17, 0.45);
+		z-index: 1000;
+		background: rgba(17, 17, 17, 0.5);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 0.35s ease,
+			visibility 0s linear 0.35s;
+	}
+
+	.site-header__overlay.is-open {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transition:
+			opacity 0.35s ease,
+			visibility 0s linear 0s;
 	}
 
 	.site-header__drawer {
+		--drawer-slide-duration: 380ms;
 		position: fixed;
 		top: 0;
 		right: 0;
+		z-index: 1001;
 		width: min(32rem, 100%);
 		height: 100vh;
 		padding: 2.4rem;
+		padding-top: 2.8rem;
 		background: var(--color-light);
 		box-shadow: -12px 0 40px rgba(17, 17, 17, 0.18);
 		transform: translateX(100%);
-		transition: transform 0.3s ease;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			transform var(--drawer-slide-duration) cubic-bezier(0.22, 1, 0.36, 1),
+			visibility 0s linear var(--drawer-slide-duration);
 	}
 
 	.site-header__drawer.is-open {
 		transform: translateX(0);
-	}
-
-	.site-header__drawer-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1.6rem;
-		margin-bottom: 3.2rem;
+		visibility: visible;
+		pointer-events: auto;
+		transition:
+			transform var(--drawer-slide-duration) cubic-bezier(0.22, 1, 0.36, 1),
+			visibility 0s linear 0s;
 	}
 
 	.site-header__drawer-list {
 		display: grid;
-		gap: 1rem;
+		gap: 0.4rem;
+	}
+
+	.site-header__drawer-list li {
+		--drawer-stagger-ms: 70ms;
+		transform: translateX(4rem);
+		transition: transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.site-header__drawer.is-open .site-header__drawer-list li {
+		transform: translateX(0);
+		transition-delay: calc(var(--drawer-item-index, 0) * var(--drawer-stagger-ms));
+	}
+
+	.site-header__drawer:not(.is-open) .site-header__drawer-list li {
+		transition-delay: 0ms;
 	}
 
 	.site-header__drawer-link {
@@ -310,8 +337,7 @@ const navigationItems = [
 			display: none;
 		}
 
-		.site-header__menu-button,
-		.site-header__close-button {
+		.site-header__menu-button {
 			display: inline-flex;
 		}
 
@@ -322,6 +348,20 @@ const navigationItems = [
 		.site-header__logo {
 			width: 4rem;
 			height: 4rem;
+		}
+
+		.site-header__overlay {
+			top: var(--site-header-offset);
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: auto;
+		}
+
+		.site-header__drawer {
+			top: var(--site-header-offset);
+			height: calc(100dvh - var(--site-header-offset));
+			max-height: calc(100vh - var(--site-header-offset));
 		}
 	}
 </style>
