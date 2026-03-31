@@ -18,17 +18,24 @@ html:focus-within {
 
 html {
   font-size: 62.5%;
-}
-
-html,
-body {
   height: 100%;
 }
 
 body {
+  min-height: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.layout-main {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
 }
 
 /* =========================
@@ -53,6 +60,7 @@ body {
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
   color: #111;
   background-color: #fff;
+  font-size: 1.6rem;
 }
 
 p,
@@ -201,4 +209,21 @@ table {
   display: block;
   width: 100%;
   text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

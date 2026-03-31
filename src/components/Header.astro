@@ -3,7 +3,7 @@ const currentPath = Astro.url.pathname;
 
 const navigationItems = [
 	{ label: 'Начало', href: '/', isActive: currentPath === '/' },
-	{ label: 'За нас', href: '/#za-nas', isActive: false },
+	{ label: 'За нас', href: '/za-nas', isActive: currentPath === '/za-nas' },
 	{ label: 'Проекти', href: '/proekti', isActive: currentPath === '/proekti' },
 	{ label: 'Евро проекти', href: '/evroproekti', isActive: currentPath === '/evroproekti' },
 	{ label: 'Контакти', href: '/kontakti', isActive: currentPath === '/kontakti' },
@@ -13,8 +13,8 @@ const navigationItems = [
 <header class="site-header" data-site-header>
 	<div class="container site-header__inner">
 		<a class="site-header__brand" href="/" aria-label="Солар Джи Пауър - Начало">
-			<img class="site-header__logo" src="/favicon.svg" alt="Солар Джи Пауър" />
-			<span class="site-header__brand-text">Solar G Power</span>
+			<img class="site-header__logo" src="/logo.png" alt="Солар Джи Пауър" />
+			<span class="site-header__brand-text visually-hidden">Solar G Power</span>
 		</a>
 
 		<nav class="site-header__nav" aria-label="Основна навигация">
@@ -147,8 +147,8 @@ const navigationItems = [
 	}
 
 	.site-header__logo {
-		width: 4.4rem;
-		height: 4.4rem;
+		width: 6.6rem;
+		height: auto;
 		object-fit: contain;
 	}
 
@@ -343,11 +343,6 @@ const navigationItems = [
 
 		.site-header__brand-text {
 			font-size: 1.6rem;
-		}
-
-		.site-header__logo {
-			width: 4rem;
-			height: 4rem;
 		}
 
 		.site-header__overlay {
